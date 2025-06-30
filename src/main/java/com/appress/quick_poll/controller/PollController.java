@@ -3,6 +3,7 @@ package com.appress.quick_poll.controller;
 import javax.inject.Inject;
 
 import java.net.URI;
+import java.util.Optional;
 
 import com.appress.quick_poll.domain.Poll;
 import com.appress.quick_poll.repository.PollRepository;
@@ -10,9 +11,11 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RestController
@@ -42,5 +45,12 @@ public class PollController {
         responseHeaders.setLocation(newPollUri);
 
         return new ResponseEntity<>(null, responseHeaders, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/polls/{pollId}")
+    public ResponseEntity<Poll> getPoll(@PathVariable Long pollId) {
+        Poll poll = pollRepository.findById(pollId)
+            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Poll not found"));
+        return ResponseEntity.ok(poll);
     }
 }
