@@ -10,9 +10,11 @@ import com.appress.quick_poll.repository.PollRepository;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
@@ -52,5 +54,17 @@ public class PollController {
         Poll poll = pollRepository.findById(pollId)
             .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Poll not found"));
         return ResponseEntity.ok(poll);
+    }
+
+    @PutMapping("/polls/{pollId}")
+    public ResponseEntity<Poll> updatePoll(@Validated @RequestBody Poll poll, @PathVariable Long pollId) {
+        // Verify poll exists first
+        if (!pollRepository.existsById(pollId)) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Poll not found");
+        }
+
+        poll.setId(pollId);
+        Poll updatedPoll = pollRepository.save(poll);
+        return ResponseEntity.ok(updatedPoll);
     }
 }
