@@ -1,13 +1,10 @@
 package com.appress.quick_poll.controller;
 
 import javax.inject.Inject;
-
 import java.net.URI;
-import java.util.Optional;
 
 import com.appress.quick_poll.domain.Poll;
 import com.appress.quick_poll.repository.PollRepository;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
