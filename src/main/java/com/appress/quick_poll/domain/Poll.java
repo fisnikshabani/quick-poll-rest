@@ -1,15 +1,10 @@
 package com.appress.quick_poll.domain;
 
-import java.util.Set;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OrderBy;
+import java.util.Set;
 
 @Entity
 public class Poll {
@@ -20,12 +15,14 @@ public class Poll {
     private Long id;
 
     @Column(name = "QUESTION")
+    @NotBlank
     private String question;
 
     //Poll instance can contain zero or more Option instances
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "POLL_ID")
     @OrderBy
+    @Size(min = 2, max = 6)
     private Set<Option> options;
 
     public Long getId() {

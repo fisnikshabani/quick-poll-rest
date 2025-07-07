@@ -3,10 +3,10 @@ package com.appress.quick_poll.controller;
 import com.appress.quick_poll.domain.Poll;
 import com.appress.quick_poll.exception.ResourceNotFoundException;
 import com.appress.quick_poll.repository.PollRepository;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -27,7 +27,7 @@ public class PollController {
     }
 
     @PostMapping("/polls")
-    public ResponseEntity<?> createPoll(@RequestBody Poll poll) {
+    public ResponseEntity<?> createPoll(@Valid @RequestBody Poll poll) {
         poll = pollRepository.save(poll);
 
         //Set the Location header for the newly created resource
@@ -48,7 +48,7 @@ public class PollController {
     }
 
     @PutMapping("/polls/{pollId}")
-    public ResponseEntity<Poll> updatePoll(@Validated @RequestBody Poll poll, @PathVariable Long pollId) {
+    public ResponseEntity<Poll> updatePoll(@Valid @RequestBody Poll poll, @PathVariable Long pollId) {
         verifyPoll(pollId);
         pollRepository.save(poll);
         return new ResponseEntity<>(HttpStatus.OK);

@@ -1,5 +1,9 @@
 package com.appress.quick_poll.dto.error;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class ErrorDetails {
 
     private String title;
@@ -7,6 +11,15 @@ public class ErrorDetails {
     private String detail;
     private long timestamp;
     private String developerMessage;
+    private Map<String, List<ValidationError>> errors = new HashMap<String, List<ValidationError>>();
+
+    public Map<String, List<ValidationError>> getErrors() {
+        return errors;
+    }
+
+    public void setErrors(Map<String, List<ValidationError>> errors) {
+        this.errors = errors;
+    }
 
     public String getTitle() {
         return title;
