@@ -27,7 +27,7 @@ public class PollController {
     }
 
     @PostMapping("/polls")
-    public ResponseEntity<?> createPoll(@Valid @RequestBody Poll poll) {
+    public ResponseEntity<Void> createPoll(@Valid @RequestBody Poll poll) {
         poll = pollRepository.save(poll);
 
         //Set the Location header for the newly created resource
