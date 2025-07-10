@@ -19,7 +19,7 @@ public class Poll {
     private String question;
 
     //Poll instance can contain zero or more Option instances
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "POLL_ID")
     @OrderBy
     @Size(min = 2, max = 6)

@@ -6,6 +6,8 @@ import com.appress.quick_poll.repository.PollRepository;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,9 +28,9 @@ public class PollController {
 
     @GetMapping("/polls")
     @Operation(summary = "Get all polls", description = "Retrieve all available polls")
-    public ResponseEntity<Iterable<Poll>> getAllPolls() {
-        Iterable<Poll> allPolls = pollRepository.findAll();
-        return new ResponseEntity<>(allPolls, HttpStatus.OK);
+    public ResponseEntity<Page<Poll>> getAllPolls(Pageable pageable) {
+       Page<Poll> allPolls = pollRepository.findAll(pageable);
+       return ResponseEntity.ok(allPolls);
     }
 
     @PostMapping("/polls")
