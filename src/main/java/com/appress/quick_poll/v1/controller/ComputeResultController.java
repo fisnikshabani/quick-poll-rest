@@ -1,12 +1,14 @@
-package com.appress.quick_poll.controller;
+package com.appress.quick_poll.v1.controller;
 
 import com.appress.quick_poll.domain.Vote;
 import com.appress.quick_poll.dto.OptionCount;
 import com.appress.quick_poll.dto.VoteResult;
 import com.appress.quick_poll.repository.VoteRepository;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,7 +16,9 @@ import javax.inject.Inject;
 import java.util.HashMap;
 import java.util.Map;
 
-@RestController
+@RestController( "computeResultControllerV1")
+@RequestMapping("/v1")
+@Tag( name = "computeresult", description = "Compute Result API")
 public class ComputeResultController {
 
     @Inject

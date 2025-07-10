@@ -1,19 +1,18 @@
-package com.appress.quick_poll.controller;
+package com.appress.quick_poll.v2.controller;
 
 import com.appress.quick_poll.domain.Vote;
 import com.appress.quick_poll.repository.VoteRepository;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-@RestController
+@RestController( "voteControllerV2")
+@RequestMapping("/v2")
+@Tag( name = "votes", description = "Vote API")
 public class VoteController {
 
     @Autowired
