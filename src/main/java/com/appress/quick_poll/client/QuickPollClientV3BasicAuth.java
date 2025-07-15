@@ -1,12 +1,12 @@
 package com.appress.quick_poll.client;
 
-import java.nio.charset.StandardCharsets;
-import java.util.Base64;
-
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.web.client.RestTemplate;
+
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
 
 public class QuickPollClientV3BasicAuth {
 
@@ -34,5 +34,6 @@ public class QuickPollClientV3BasicAuth {
 
         QuickPollClientV3BasicAuth client = new QuickPollClientV3BasicAuth();
         client.deletePoll(1L);
+        System.out.println("Poll with id 1 deleted");
     }
 }
