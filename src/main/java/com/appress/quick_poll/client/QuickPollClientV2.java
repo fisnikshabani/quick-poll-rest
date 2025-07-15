@@ -42,7 +42,7 @@ public class QuickPollClientV2 {
     }
 
     public void updatePoll(Poll poll) {
-        restTemplate.put(QUICK_POLL_URI_v2 + "/{pollId}",  poll, poll.getId());
+        restTemplate.put(QUICK_POLL_URI_v2 + "/{pollId}",  poll, poll.getPollId());
     }
 
     public void deletePoll(Long pollId) {

@@ -1,16 +1,16 @@
 package com.appress.quick_poll.client;
 
+import java.net.URI;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import com.appress.quick_poll.domain.Option;
 import com.appress.quick_poll.domain.Poll;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
-
-import java.net.URI;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 public class QuickPollClient {
 
@@ -34,7 +34,7 @@ public class QuickPollClient {
     }
 
     public void updatePoll(Poll poll) {
-        restTemplate.put(QUICK_POLL_URI_v1 + "/{pollId}", poll, poll.getId());
+        restTemplate.put(QUICK_POLL_URI_v1 + "/{pollId}", poll, poll.getPollId());
     }
 
     public void deletePoll(Long pollId) {
